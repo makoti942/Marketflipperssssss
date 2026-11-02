@@ -43,7 +43,10 @@ try {
   run(git, ['checkout', '--detach', dtraderCommit], tempDir);
 
   console.log('[StarTraders] Installing DTrader engine dependencies...');
-  run(npm, ['ci', '--strict-peer-deps'], tempDir);
+  run(npm, ['ci', '--strict-peer-deps', '--include=dev'], tempDir, {
+    ...process.env,
+    HUSKY: '0',
+  });
 
   console.log('[StarTraders] Generating StarTraders DTrader theme...');
   run(npm, ['run', 'generate:colors'], tempDir);

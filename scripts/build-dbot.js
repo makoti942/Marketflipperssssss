@@ -55,7 +55,10 @@ try {
   fs.writeFileSync(brandPath, JSON.stringify(brand, null, 2) + '\n');
 
   console.log('[StarTraders] Installing DBot engine dependencies...');
-  run(npm, ['ci', '--strict-peer-deps'], tempDir);
+  run(npm, ['ci', '--strict-peer-deps', '--include=dev'], tempDir, {
+    ...process.env,
+    HUSKY: '0',
+  });
   console.log('[StarTraders] Generating StarTraders theme variables...');
   run(npm, ['run', 'generate:brand-css'], tempDir);
 
