@@ -205,8 +205,7 @@ export default function HomePage() {
               </linearGradient>
             </defs>
           </svg>
-          <span className="star">STAR</span>
-          <span className="traders">TRADERS</span>
+          <span className="traders">MARKET FLIPER</span>
         </div>
 
         <div className="nav-actions">

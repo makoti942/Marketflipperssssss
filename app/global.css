@@ -2060,9 +2060,9 @@ footer {
 /* The arrange modal is a full-screen fixed overlay, so it must sit above
    everything on the dashboard — including the two bars lifted above. */
 .arrange-modal-backdrop { z-index: 200; }
-.tab-nav { min-height: 56px; gap: 2px; padding: 0 14px; background: linear-gradient(90deg, #071d3e, #08264d 50%, #071c3a); border-bottom: 0; }
-.tab-icon-only, .tab-item { height: 56px; border-radius: 0; padding: 0 17px; border: 0; background: transparent; color: #b6c7da; font-size: 13px; font-weight: 750; }
-.tab-icon-only { width: 48px; padding: 0; color: var(--st-orange); border-right: 1px solid rgba(255,255,255,.07); }.tab-item svg, .tab-icon-only svg { width: 22px; height: 22px; }.tab-item:hover { color: #fff; background: rgba(255,255,255,.05); }.tab-item.active { color: #fff; background: linear-gradient(180deg, #16458b, #123b78); border: 0; box-shadow: inset 0 -3px 0 var(--st-orange); }
+.tab-nav { min-height: 0; flex-wrap: wrap; overflow-x: visible; gap: 6px; padding: 8px 14px; background: linear-gradient(90deg, #071d3e, #08264d 50%, #071c3a); border-bottom: 0; }
+.tab-icon-only, .tab-item { min-height: 44px; height: 44px; border-radius: 9px; padding: 0 12px; border: 1px solid rgba(24,216,255,.16); background: rgba(255,255,255,.025); color: #b6c7da; font-size: 13px; font-weight: 750; }
+.tab-icon-only { width: 44px; padding: 0; color: var(--st-orange); }.tab-item svg, .tab-icon-only svg { width: 20px; height: 20px; }.tab-item:hover { color: #fff; background: rgba(255,255,255,.08); border-color: rgba(24,216,255,.32); }.tab-item.active { color: #fff; background: linear-gradient(180deg, #16458b, #123b78); border-color: rgba(255,122,24,.48); box-shadow: inset 0 -3px 0 var(--st-orange); }
 
 .market-ticker { background: rgba(2,10,21,.96); border-bottom: 1px solid rgba(24,216,255,.12); }.market-ticker-track { gap: 34px; padding: 8px 18px; animation-duration: 30s; }.market-ticker-item { gap: 7px; font-size: 11.5px; }.ticker-live-dot { width: 5px; height: 5px; border-radius: 50%; background: #16e0bc; box-shadow: 0 0 8px #16e0bc; }.ticker-name { color: #9cafc2; }.ticker-price { color: #e6f0fa; }.ticker-change { font-weight: 700; }
 

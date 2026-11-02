@@ -13,8 +13,7 @@ export default function Logo() {
           </linearGradient>
         </defs>
       </svg>
-      <span className="star">STAR</span>
-      <span className="traders">TRADERS</span>
+      <span className="traders">MARKET FLIPER</span>
     </div>
   );
 }
