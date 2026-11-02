@@ -8,17 +8,9 @@ function base64url(buffer) {
 }
 
 export async function GET(request) {
-  const clientId =
-    process.env.DERIV_CLIENT_ID ||
-    process.env.DERIV_APP_ID ||
-    process.env.NEXT_PUBLIC_DERIV_APP_ID ||
-    '34ogXNoaMaOpCsqhQDaDS';
-  const redirectUri =
-    process.env.DERIV_REDIRECT_URI ||
-    process.env.DERIV_REDIRECT_URL ||
-    'https://marketflipperss.vercel.app/api/auth/callback';
-  const scope = process.env.DERIV_OAUTH_SCOPE || 'trade';
-  const legacyAppId = process.env.DERIV_LEGACY_APP_ID;
+  const clientId = '34ogXNoaMaOpCsqhQDaDS';
+  const redirectUri = 'https://marketflipperss.vercel.app/';
+  const scope = 'trade';
 
   const verifier = base64url(crypto.randomBytes(64));
   const state = base64url(crypto.randomBytes(32));
@@ -32,8 +24,6 @@ export async function GET(request) {
   url.searchParams.set('state', state);
   url.searchParams.set('code_challenge', challenge);
   url.searchParams.set('code_challenge_method', 'S256');
-  if (legacyAppId) url.searchParams.set('app_id', legacyAppId);
-
   const response = NextResponse.redirect(url);
   const secure = process.env.NODE_ENV === 'production';
   response.cookies.set('st_oauth_verifier', verifier, { httpOnly: true, secure, sameSite: 'lax', path: '/', maxAge: 600 });

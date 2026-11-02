@@ -7,13 +7,8 @@ import AiFab from '@/components/AiFab';
 import LoadingScreen from '@/components/LoadingScreen';
 
 const SCAN_MESSAGES = [
-  'Setting up your trading session...',
-  'Scanning Trade signals',
-  'Initializing Speed Bot',
-  'Connecting to the markets...',
-  'Empowering your financial journey...',
-  'Optimizing Ai bots...',
-  'If the loading is taking too long, kindly refresh and try Again',
+  'Loading Market Fliper...',
+  'Preparing your dashboard...',
   'Almost ready...',
 ];
 
@@ -101,14 +96,14 @@ export default function HomePage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((p) => {
-        const next = Math.min(100, p + 2);
+        const next = Math.min(100, p + 10);
         if (next >= 100) {
           clearInterval(interval);
-          setTimeout(() => setLoading(false), 500);
+          setTimeout(() => setLoading(false), 150);
         }
         return next;
       });
-    }, 100);
+    }, 40);
 
     return () => clearInterval(interval);
   }, []);

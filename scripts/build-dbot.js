@@ -38,7 +38,7 @@ try {
   // Apply Market Fliper branding to the actual DBot application before building it.
   const brandPath = path.join(tempDir, 'brand.config.json');
   const brand = JSON.parse(fs.readFileSync(brandPath, 'utf8'));
-  const hostname = process.env.MARKET_FLIPER_HOSTNAME || 'marketflipperss.vercel.app';
+  const hostname = 'marketflipperss.vercel.app';
   brand.brand_name = 'Market Fliper';
   brand.brand_domain = hostname;
   brand.domain_name = 'Market Fliper';
@@ -66,12 +66,7 @@ try {
   run(npm, ['run', 'build'], tempDir, {
     ...process.env,
     APP_ENV: 'production',
-    CLIENT_ID:
-      process.env.DBOT_CLIENT_ID ||
-      process.env.DERIV_CLIENT_ID ||
-      process.env.DERIV_APP_ID ||
-      process.env.CLIENT_ID ||
-      '34ogXNoaMaOpCsqhQDaDS',
+    CLIENT_ID: '34ogXNoaMaOpCsqhQDaDS',
     BOT_BASE_PATH: '/bot-builder/engine',
     NODE_ENV: 'production',
   });

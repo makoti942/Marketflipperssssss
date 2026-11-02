@@ -58,11 +58,7 @@ try {
     tempDir,
     {
       ...process.env,
-      OAUTH_CLIENT_ID:
-        process.env.OAUTH_CLIENT_ID ||
-        process.env.DERIV_CLIENT_ID ||
-        process.env.DERIV_APP_ID ||
-        '34ogXNoaMaOpCsqhQDaDS',
+      OAUTH_CLIENT_ID: '34ogXNoaMaOpCsqhQDaDS',
       DTRADER_EMBEDDED: '1',
       DTRADER_BASE_PATH: 'manual-trader-engine',
       NODE_ENV: 'production',

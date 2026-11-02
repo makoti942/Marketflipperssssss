@@ -29,21 +29,7 @@ export async function GET(request) {
    * Do NOT use request.url origin because proxies can
    * expose an internal localhost origin to the app.
    */
-  const redirectUri =
-    process.env.DERIV_REDIRECT_URI ||
-    process.env.DERIV_REDIRECT_URL ||
-    'https://marketflipperss.vercel.app/api/auth/callback';
-
-  if (!redirectUri) {
-    return NextResponse.json(
-      {
-        error:
-          'DERIV_REDIRECT_URI is not configured.',
-      },
-      { status: 500 }
-    );
-  }
-
+  const redirectUri = 'https://marketflipperss.vercel.app/';
   const publicOrigin = new URL(redirectUri).origin;
 
   /*
@@ -87,20 +73,7 @@ export async function GET(request) {
     );
   }
 
-  const clientId =
-    process.env.DERIV_CLIENT_ID ||
-    process.env.DERIV_APP_ID ||
-    process.env.NEXT_PUBLIC_DERIV_APP_ID ||
-    '34ogXNoaMaOpCsqhQDaDS';
-
-  if (!clientId) {
-    return NextResponse.redirect(
-      new URL(
-        '/callback?error=server_configuration',
-        publicOrigin
-      )
-    );
-  }
+  const clientId = '34ogXNoaMaOpCsqhQDaDS';
 
   /*
    * Exchange the authorization code for tokens.

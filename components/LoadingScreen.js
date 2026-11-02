@@ -67,8 +67,7 @@ export default function LoadingScreen({
           </svg>
 
           <div className="wordmark wordmark-big">
-            <span className="star">STAR</span>
-            <span className="traders">TRADERS</span>
+            <span className="traders">MARKET FLIPER</span>
           </div>
         </div>
 

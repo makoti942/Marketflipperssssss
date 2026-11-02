@@ -22,9 +22,9 @@ The old V1/legacy `oauth.deriv.com/oauth2/authorize` flow in the original projec
 
 For this deployment, the Deriv app ID and OAuth client ID use the supplied value `34ogXNoaMaOpCsqhQDaDS`. The app also has the production callback URL built in, so no Vercel environment variables are required.
 
-Register this exact callback URL in Deriv:
+Register this exact root callback URL in Deriv, including the trailing slash:
 
-`https://marketflipperss.vercel.app/api/auth/callback`
+`https://marketflipperss.vercel.app/`
 
 Never commit `.env.local` or put access tokens in client-side JavaScript.
 
@@ -32,11 +32,11 @@ The session cookie is base64-encoded, not encrypted, because this deployment doe
 
 ## Vercel
 
-No Vercel environment variables are required for the built-in app ID and callback. Register the exact callback URL with the Deriv OAuth application, then deploy the repository.
+No Vercel environment variables are required for the built-in app/client ID and callback. Middleware forwards the root OAuth response to the server-side callback handler. Register the exact root callback URL with the Deriv OAuth application, then deploy the repository.
 
 ## Expected login flow
 
-Market Fliper → Login / Start Trading → Deriv login & consent → `/api/auth/callback` → server exchanges code → Market Fliper `/dashboard` → authenticated Deriv WebSocket.
+Market Fliper → Login / Start Trading → Deriv login & consent → root callback URL → internal server-side code exchange → Market Fliper `/dashboard` → authenticated Deriv WebSocket.
 
 ## Trading safety
 
@@ -47,7 +47,7 @@ The UI pages from the original prototype contain some simulated/demo widgets. Au
 
 1. Push this folder to GitHub.
 2. Import this GitHub repository as a Vercel project.
-3. In the Deriv developer dashboard, use an **OAuth** application and register the exact `/api/auth/callback` URL.
+3. In the Deriv developer dashboard, use an **OAuth** application and register `https://marketflipperss.vercel.app/` exactly, including the trailing slash.
 4. Deploy and test Home → Start Trading → Deriv login/consent → Market Fliper dashboard.
 
 No user access token or password is stored in this repository. Tokens are issued by Deriv during OAuth and held in an HttpOnly browser cookie until they expire.
