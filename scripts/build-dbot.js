@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, '..');
 const tempDir = path.join(root, '.dbot-build');
 const publicDir = path.join(root, 'public');
 const outputDir = path.join(publicDir, 'dbot-engine');
-const repo = 'https://github.com/raymondmarechu07-ui/trading-bot-template.git';
+const repo = 'https://github.com/deriv-com/trading-bot-template.git';
 // Pin the DBot source revision with the StarTraders production-environment fix.
 const commit = 'd37ad5a44286c3589ddac83484372ebc991f4460';
 
