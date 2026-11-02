@@ -2,7 +2,7 @@ import './global.css';
 import { DerivProvider } from '@/context/DerivProvider';
 
 export const metadata = {
-  title: 'Star Traders',
+  title: 'Market Fliper',
   description: 'Your ultimate partner in trading success.',
 };
 

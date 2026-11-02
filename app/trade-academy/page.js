@@ -107,7 +107,7 @@ export default function TradeAcademyPage() {
         </div>
 
         <div className="academy-footer-note">
-          Star Traders provides educational content and connects you to your own Deriv account —
+          Market Fliper provides educational content and connects you to your own Deriv account —
           we don't manage your funds or guarantee results. Trading always carries risk of loss.
         </div>
       </main>

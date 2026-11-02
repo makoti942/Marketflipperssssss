@@ -18,7 +18,7 @@ const SCAN_MESSAGES = [
 ];
 
 const HEADLINE_PHRASES = [
-  'Welcome to Startraders',
+  'Welcome to Market Fliper',
   'Simply your best market Analysis',
    'Trade with Best Structure',
   'Empowering your trading journey',
@@ -298,7 +298,7 @@ export default function HomePage() {
           <div className="t-card-v2">
             <div className="t-avatar">MG</div>
             <p className="quote">
-              &quot;StarTraders transformed my trading. The automated bots
+              &quot;Market Fliper transformed my trading. The automated bots
               handle my strategies flawlessly, and the platform is
               intuitive and powerful.&quot;
             </p>
@@ -336,8 +336,8 @@ export default function HomePage() {
 
       <section className="home-section">
         <div className="section-head">
-          <div className="tag">WHY STARTRADERS</div>
-          <h2>Why Choose StarTraders?</h2>
+          <div className="tag">WHY MARKET FLIPER</div>
+          <h2>Why Choose Market Fliper?</h2>
           <p>
             Join the platform that&apos;s redefining automated trading with
             practical tools, analysis, and risk management in one workspace.
@@ -419,7 +419,7 @@ export default function HomePage() {
         <div className="tag">GET STARTED</div>
         <h2>Ready to Transform Your Trading?</h2>
         <p>
-          Join 50,000+ traders who are already profiting with StarTraders.
+          Join 50,000+ traders who are already profiting with Market Fliper.
           Start with a free virtual account today.
         </p>
         <button className="btn-cta-lg" onClick={login}>

@@ -97,7 +97,7 @@ export default function UtilityBar() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
           </button>
           <Logo />
-          <button className="utility-icon-button" onClick={() => setContactOpen(true)} aria-label="Contact StarTraders">
+          <button className="utility-icon-button" onClick={() => setContactOpen(true)} aria-label="Contact Market Fliper">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16.5c0 .6-.4 1-1 1-8.3 0-15-6.7-15-15 0-.6.4-1 1-1h3.5c.5 0 .9.4 1 .9.1 1.2.4 2.4.8 3.5.2.4.1.9-.3 1.2l-1.6 1.3c1.4 2.9 3.8 5.3 6.7 6.7l1.3-1.6c.3-.4.8-.5 1.2-.3 1.1.4 2.3.7 3.5.8.5.1.9.5.9 1v3.5z" /></svg>
           </button>
           <button className="reports-link" type="button" onClick={() => alert('Reports will be connected to your trading history.') }>

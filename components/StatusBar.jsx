@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Footer status bar for StarTraders (Deriv-style).
+ * Footer status bar for Market Fliper (Deriv-style).
  *
  * Props:
  *  - connected: boolean. Pass true when your Deriv WebSocket is open.

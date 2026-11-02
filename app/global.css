@@ -878,7 +878,7 @@ footer {
   .feature-grid { grid-template-columns: 1fr; }
 
   /* The wordmark was still using its full desktop font-size (25px) here,
-     which made "STARTRADERS" look oversized next to the Login button on
+     which made "MARKET FLIPER" look oversized next to the Login button on
      phones. Scale it (and the login button) down to match. */
   .nav-logo { font-size: 17px; }
   .nav-logo svg { width: 24px; height: 24px; margin-right: 5px; }
@@ -1982,7 +1982,7 @@ footer {
 }
 
 /* ==========================================================
-   STARTRADERS 2026 VISUAL UPGRADE
+   MARKET FLIPER 2026 VISUAL UPGRADE
    Desktop + tablet + phone responsive layer.
    This section intentionally comes last so it overrides the
    original dashboard styling without touching other pages.
@@ -2145,7 +2145,7 @@ footer {
 /* ==========================================================
    MANUAL TRADER — embedded DTrader workspace
    The DTrader engine owns the account/balance and trading controls.
-   StarTraders only supplies the navigation shell around it.
+   Market Fliper only supplies the navigation shell around it.
    ========================================================== */
 .manual-trader-dashboard {
   height: 100vh;
@@ -2501,7 +2501,7 @@ footer {
 }
 
 
-/* StarTraders Manual Trader workspace fit: remove DTrader's reserved flyout
+/* Market Fliper Manual Trader workspace fit: remove DTrader's reserved flyout
    gutter in the embedded shell and use the full space like the DBTraders view. */
 .dbt-manual-trader #derivatives_trader .trade {
   width: 100% !important;

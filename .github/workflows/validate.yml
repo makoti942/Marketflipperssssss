@@ -1,4 +1,4 @@
-name: StarTraders validation
+name: Market Fliper validation
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - name: Install StarTraders dependencies
+      - name: Install Market Fliper dependencies
         run: npm ci
       - name: Build production app
         run: npm run build

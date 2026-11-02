@@ -15,7 +15,7 @@ const MARKETS = [
 ];
 
 const QUICK_ACTIONS = [
-  { title: 'Manual Trader', description: 'Open the live StarTraders trading workspace.', icon: 'chart', color: 'green', href: '/manual-trader' },
+  { title: 'Manual Trader', description: 'Open the live Market Fliper trading workspace.', icon: 'chart', color: 'green', href: '/manual-trader' },
   { title: 'Upload Bot', description: 'Import an XML bot from your computer.', icon: 'folder', color: 'orange', action: 'upload' },
   { title: 'Free Bots', description: 'Browse ready-made trading strategies.', icon: 'bot', color: 'green', href: '/free-bots' },
   { title: 'DBot Engine', description: 'Open the full Deriv DBot visual strategy builder.', icon: 'puzzle', color: 'purple', href: '/bot-builder/engine' },
@@ -166,7 +166,7 @@ export default function DashboardPage() {
   }, [status, getProfitHistory, getPortfolio]);
 
   const openDbotEngine = () => {
-    // The main StarTraders OAuth session and the DBot build use the same
+    // The main Market Fliper OAuth session and the DBot build use the same
     // registered Deriv client ID. Require an authenticated session before
     // opening the full strategy engine; never fake a running state here.
     if (status !== 'connected' || !activeAccount) {
@@ -212,7 +212,7 @@ export default function DashboardPage() {
           </div>
           <div className="hero-grid" aria-hidden="true" />
           <div className="hero-content">
-            <div className="eyebrow orange-accent">STARTRADERS • {accountType.toUpperCase()} ACCOUNT</div>
+            <div className="eyebrow orange-accent">MARKET FLIPER • {accountType.toUpperCase()} ACCOUNT</div>
             <h1><span className="hello-accent">Hello,</span> {accountId}<span className="hello-wave">👋</span></h1>
             <p className="hero-quote" key={adviceIndex}>“{TRADING_ADVICE[adviceIndex]}”</p>
             <div className="hero-status"><span className="status-dot"/> {status === 'connected' ? 'Deriv connected' : 'Deriv not connected'} <span className="status-separator"/> {marketFeedStatus}</div>
@@ -224,7 +224,7 @@ export default function DashboardPage() {
             <div>
               <div className="section-eyebrow orange-accent">LIVE ACCOUNT</div>
               <h2>Account Overview</h2>
-              <p className="section-subtitle">Your StarTraders dashboard stays synced with the connected Deriv account.</p>
+              <p className="section-subtitle">Your Market Fliper dashboard stays synced with the connected Deriv account.</p>
             </div>
             <div className="account-sync-pill"><span className="account-sync-dot" /> {status === 'connected' ? 'LIVE SYNC' : status.toUpperCase()}</div>
           </div>

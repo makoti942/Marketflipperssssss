@@ -26,12 +26,12 @@ function loadEngineAssets() {
         if (!href) return;
 
         const absolute = new URL(href, window.location.origin).href;
-        if (document.querySelector('link[data-startraders-dtrader-css="' + absolute + '"]')) return;
+        if (document.querySelector('link[data-marketfliper-dtrader-css="' + absolute + '"]')) return;
 
         const style = document.createElement('link');
         style.rel = 'stylesheet';
         style.href = absolute;
-        style.dataset.startradersDtraderCss = absolute;
+        style.dataset.marketfliperDtraderCss = absolute;
         document.head.appendChild(style);
       });
 
@@ -46,7 +46,7 @@ function loadEngineAssets() {
         new Promise((resolve, reject) => {
           const src = new URL(script.getAttribute('src'), window.location.origin).href;
           const existing = document.querySelector(
-            'script[data-startraders-dtrader-src="' + src + '"]'
+            'script[data-marketfliper-dtrader-src="' + src + '"]'
           );
 
           if (existing) {
@@ -58,7 +58,7 @@ function loadEngineAssets() {
           el.src = src;
           el.type = script.type || '';
           el.async = script.type === 'module';
-          el.dataset.startradersDtraderSrc = src;
+          el.dataset.marketfliperDtraderSrc = src;
           el.onload = resolve;
           el.onerror = () => reject(new Error('DTrader asset failed: ' + src));
           document.body.appendChild(el);
@@ -101,7 +101,7 @@ export default function ManualTraderEmbed() {
           throw new Error('DTrader embedded mount hook is unavailable.');
         }
 
-        // The DTrader bootstrap is async: do not remove the StarTraders
+        // The DTrader bootstrap is async: do not remove the Market Fliper
         // loading layer until the real DTrader React tree has mounted.
         await Promise.race([
           mount(),
@@ -121,7 +121,7 @@ export default function ManualTraderEmbed() {
         setStatus('ready');
       } catch (err) {
         if (!cancelled) {
-          console.error('[StarTraders] Manual Trader failed to load:', err);
+          console.error('[Market Fliper] Manual Trader failed to load:', err);
           setError(err instanceof Error ? err.message : 'Unknown DTrader loading error');
           setStatus('error');
         }

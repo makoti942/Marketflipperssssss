@@ -156,7 +156,7 @@ export default function BotBuilderPage() {
         const ws = Blockly.inject(workspaceHost.current, {
           toolbox,
           renderer: 'zelos',
-          theme: Blockly.Theme.defineTheme('starTradersDark', {
+          theme: Blockly.Theme.defineTheme('marketFliperDark', {
             base: Blockly.Themes.Classic,
             componentStyles: {
               workspaceBackgroundColour: '#0d1425',
@@ -360,9 +360,9 @@ export default function BotBuilderPage() {
     <main style={palette.page}>
       <header style={palette.header}>
         <div>
-          <p style={palette.eyebrow}>StarTraders · Visual automation</p>
+          <p style={palette.eyebrow}>Market Fliper · Visual automation</p>
           <h1 style={palette.title}>Deriv Bot Builder</h1>
-          <p style={palette.subtitle}>Build a strategy with drag-and-drop blocks — right inside StarTraders.</p>
+          <p style={palette.subtitle}>Build a strategy with drag-and-drop blocks — right inside Market Fliper.</p>
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <a href="/bot-builder/engine" style={{ ...palette.primary, display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>Open full Deriv Bot engine</a>

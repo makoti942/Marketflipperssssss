@@ -12,7 +12,7 @@ const nextConfig = {
   async rewrites() {
     return {
       beforeFiles: [
-        // Serve the full DBot build from StarTraders' own public assets.
+        // Serve the full DBot build from Market Fliper' own public assets.
         // No external-host rewrite or iframe: HTML, JS, CSS, and chunks stay same-origin.
         { source: '/bot-builder/engine', destination: '/dbot-engine/index.html' },
         { source: '/bot-builder/engine/:path*', destination: '/dbot-engine/:path*' },

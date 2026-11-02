@@ -8,14 +8,17 @@ function base64url(buffer) {
 }
 
 export async function GET(request) {
-  const clientId = process.env.DERIV_CLIENT_ID;
-  const redirectUri = process.env.DERIV_REDIRECT_URI || 'https://marketflipperss.vercel.app/api/auth/callback';
+  const clientId =
+    process.env.DERIV_CLIENT_ID ||
+    process.env.DERIV_APP_ID ||
+    process.env.NEXT_PUBLIC_DERIV_APP_ID ||
+    '34ogXNoaMaOpCsqhQDaDS';
+  const redirectUri =
+    process.env.DERIV_REDIRECT_URI ||
+    process.env.DERIV_REDIRECT_URL ||
+    'https://marketflipperss.vercel.app/api/auth/callback';
   const scope = process.env.DERIV_OAUTH_SCOPE || 'trade';
   const legacyAppId = process.env.DERIV_LEGACY_APP_ID;
-
-  if (!clientId || !redirectUri) {
-    return NextResponse.json({ error: 'Missing DERIV_CLIENT_ID or DERIV_REDIRECT_URI.' }, { status: 500 });
-  }
 
   const verifier = base64url(crypto.randomBytes(64));
   const state = base64url(crypto.randomBytes(32));

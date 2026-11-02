@@ -7,7 +7,7 @@ const tempDir = path.join(root, '.dbot-build');
 const publicDir = path.join(root, 'public');
 const outputDir = path.join(publicDir, 'dbot-engine');
 const repo = 'https://github.com/deriv-com/trading-bot-template.git';
-// Pin the DBot source revision with the StarTraders production-environment fix.
+// Pin the DBot source revision with the Market Fliper production-environment fix.
 const commit = 'd37ad5a44286c3589ddac83484372ebc991f4460';
 
 const run = (command, args, cwd, env = process.env) => {
@@ -30,21 +30,21 @@ try {
   fs.rmSync(outputDir, { recursive: true, force: true });
   fs.mkdirSync(publicDir, { recursive: true });
 
-  console.log('[StarTraders] Fetching pinned full DBot engine source...');
+  console.log('[Market Fliper] Fetching pinned full DBot engine source...');
   run(git, ['clone', '--depth', '1', '--branch', 'master', repo, tempDir], root);
   run(git, ['fetch', '--depth', '1', 'origin', commit], tempDir);
   run(git, ['checkout', '--detach', commit], tempDir);
 
-  // Apply StarTraders branding to the actual DBot application before building it.
+  // Apply Market Fliper branding to the actual DBot application before building it.
   const brandPath = path.join(tempDir, 'brand.config.json');
   const brand = JSON.parse(fs.readFileSync(brandPath, 'utf8'));
-  const hostname = process.env.STARTRADERS_HOSTNAME || 'marketflipperss.vercel.app';
-  brand.brand_name = 'StarTraders';
+  const hostname = process.env.MARKET_FLIPER_HOSTNAME || 'marketflipperss.vercel.app';
+  brand.brand_name = 'Market Fliper';
   brand.brand_domain = hostname;
-  brand.domain_name = 'StarTraders';
-  brand.platform.name = 'StarTraders Bot Builder';
-  brand.platform.logo.alt_text = 'StarTraders';
-  brand.platform.logo.text = 'StarTraders';
+  brand.domain_name = 'Market Fliper';
+  brand.platform.name = 'Market Fliper Bot Builder';
+  brand.platform.logo.alt_text = 'Market Fliper';
+  brand.platform.logo.text = 'Market Fliper';
   brand.platform.logo.show_text = true;
   brand.platform.hostname.production.com = hostname;
   brand.brand_hostname.production = `https://${hostname}/bot-builder/engine`;
@@ -54,19 +54,24 @@ try {
   brand.colors.tertiary = '#2375d8';
   fs.writeFileSync(brandPath, JSON.stringify(brand, null, 2) + '\n');
 
-  console.log('[StarTraders] Installing DBot engine dependencies...');
+  console.log('[Market Fliper] Installing DBot engine dependencies...');
   run(npm, ['ci', '--strict-peer-deps', '--include=dev'], tempDir, {
     ...process.env,
     HUSKY: '0',
   });
-  console.log('[StarTraders] Generating StarTraders theme variables...');
+  console.log('[Market Fliper] Generating Market Fliper theme variables...');
   run(npm, ['run', 'generate:brand-css'], tempDir);
 
-  console.log('[StarTraders] Building full DBot engine for the same-origin StarTraders route...');
+  console.log('[Market Fliper] Building full DBot engine for the same-origin Market Fliper route...');
   run(npm, ['run', 'build'], tempDir, {
     ...process.env,
     APP_ENV: 'production',
-    CLIENT_ID: process.env.DBOT_CLIENT_ID || process.env.DERIV_CLIENT_ID || process.env.CLIENT_ID || '',
+    CLIENT_ID:
+      process.env.DBOT_CLIENT_ID ||
+      process.env.DERIV_CLIENT_ID ||
+      process.env.DERIV_APP_ID ||
+      process.env.CLIENT_ID ||
+      '34ogXNoaMaOpCsqhQDaDS',
     BOT_BASE_PATH: '/bot-builder/engine',
     NODE_ENV: 'production',
   });
@@ -92,11 +97,8 @@ try {
     throw new Error('DBot manifest references missing assets: ' + missing.join(', '));
   }
 
-  console.log('[StarTraders] Full DBot engine built into public/dbot-engine.');
-  console.log('[StarTraders] Validated ' + references.length + ' entry assets.');
-  if (!(process.env.DBOT_CLIENT_ID || process.env.DERIV_CLIENT_ID || process.env.CLIENT_ID)) {
-    console.warn('[StarTraders] DBOT_CLIENT_ID is not configured; OAuth login needs the registered StarTraders Deriv client ID.');
-  }
+  console.log('[Market Fliper] Full DBot engine built into public/dbot-engine.');
+  console.log('[Market Fliper] Validated ' + references.length + ' entry assets.');
 } finally {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }

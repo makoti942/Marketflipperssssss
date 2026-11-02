@@ -8,7 +8,7 @@ const publicDir = path.join(root, 'public');
 const outputDir = path.join(publicDir, 'manual-trader-engine');
 const oldOutputDir = path.join(publicDir, 'dtrader-engine');
 const dtraderRepo = 'https://github.com/raymondmarechu07-ui/startraders-dtrader.git';
-// Pin the exact tested StarTraders DTrader engine revision so a future upstream
+// Pin the exact tested Market Fliper DTrader engine revision so a future upstream
 // change cannot silently alter the production Manual Trader build.
 const dtraderCommit = '88596e342154c8c2bae381d673079704ff7fb697';
 
@@ -31,34 +31,38 @@ const git = process.platform === 'win32' ? 'git.exe' : 'git';
 try {
   fs.rmSync(tempDir, { recursive: true, force: true });
   // The DTrader engine is an internal implementation detail. It must not own
-  // the public /manual-trader URL because StarTraders owns that route.
+  // the public /manual-trader URL because Market Fliper owns that route.
   fs.rmSync(oldOutputDir, { recursive: true, force: true });
   fs.rmSync(outputDir, { recursive: true, force: true });
   fs.mkdirSync(publicDir, { recursive: true });
 
-  console.log('[StarTraders] Fetching the DTrader engine...');
-  // Clone the branch that contains the pinned StarTraders patch so the shallow
+  console.log('[Market Fliper] Fetching the DTrader engine...');
+  // Clone the branch that contains the pinned Market Fliper patch so the shallow
   // checkout includes the exact engine commit, even though it is not on master.
   run(git, ['clone', '--depth', '1', '--branch', 'master', dtraderRepo, tempDir], root);
   run(git, ['checkout', '--detach', dtraderCommit], tempDir);
 
-  console.log('[StarTraders] Installing DTrader engine dependencies...');
+  console.log('[Market Fliper] Installing DTrader engine dependencies...');
   run(npm, ['ci', '--strict-peer-deps', '--include=dev'], tempDir, {
     ...process.env,
     HUSKY: '0',
   });
 
-  console.log('[StarTraders] Generating StarTraders DTrader theme...');
+  console.log('[Market Fliper] Generating Market Fliper DTrader theme...');
   run(npm, ['run', 'generate:colors'], tempDir);
 
-  console.log('[StarTraders] Building DTrader as the embedded Manual Trader engine...');
+  console.log('[Market Fliper] Building DTrader as the embedded Manual Trader engine...');
   run(
     npm,
     ['run', 'build:all'],
     tempDir,
     {
       ...process.env,
-      OAUTH_CLIENT_ID: process.env.OAUTH_CLIENT_ID || process.env.DERIV_CLIENT_ID || '',
+      OAUTH_CLIENT_ID:
+        process.env.OAUTH_CLIENT_ID ||
+        process.env.DERIV_CLIENT_ID ||
+        process.env.DERIV_APP_ID ||
+        '34ogXNoaMaOpCsqhQDaDS',
       DTRADER_EMBEDDED: '1',
       DTRADER_BASE_PATH: 'manual-trader-engine',
       NODE_ENV: 'production',
@@ -74,7 +78,7 @@ try {
   fs.cpSync(builtDist, outputDir, { recursive: true });
 
   // The DTrader webpack build can still emit its original public asset prefix
-  // (/trader/) for lazy-loaded JS/CSS chunks. Because StarTraders serves the
+  // (/trader/) for lazy-loaded JS/CSS chunks. Because Market Fliper serves the
   // engine from /manual-trader-engine/, rewrite that runtime prefix throughout
   // the generated text assets. Without this, the initial bundle loads but a
   // lazy CSS chunk is requested from /trader/css/... and fails with a 404.
@@ -106,8 +110,8 @@ try {
 
   rewriteAssetPrefixes(outputDir);
 
-  // StarTraders owns /manual-trader. The DTrader engine lives at an internal
-  // same-origin asset path and is displayed inside the StarTraders shell.
+  // Market Fliper owns /manual-trader. The DTrader engine lives at an internal
+  // same-origin asset path and is displayed inside the Market Fliper shell.
   const engineIndex = path.join(outputDir, 'index.html');
   let indexHtml = fs.readFileSync(engineIndex, 'utf8');
 
@@ -139,8 +143,8 @@ try {
     throw new Error('DTrader manifest references missing assets: ' + missingAssets.join(', '));
   }
 
-  console.log('[StarTraders] Validated ' + assetRefs.length + ' DTrader manifest assets.');
-  console.log('[StarTraders] DTrader engine installed at public/manual-trader-engine/.');
+  console.log('[Market Fliper] Validated ' + assetRefs.length + ' DTrader manifest assets.');
+  console.log('[Market Fliper] DTrader engine installed at public/manual-trader-engine/.');
 } finally {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }

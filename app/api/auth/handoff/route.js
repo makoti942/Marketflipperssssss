@@ -11,10 +11,10 @@ const DTRADER_ORIGINS = new Set([
 const HANDOFF_TTL_MS = 60 * 1000;
 
 function store() {
-  if (!globalThis.__starTradersHandoffs) {
-    globalThis.__starTradersHandoffs = new Map();
+  if (!globalThis.__marketFliperHandoffs) {
+    globalThis.__marketFliperHandoffs = new Map();
   }
-  return globalThis.__starTradersHandoffs;
+  return globalThis.__marketFliperHandoffs;
 }
 
 function cors(response) {

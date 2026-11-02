@@ -18,7 +18,7 @@ const TABS = [
   { label: 'Bulk Trader', href: null, icon: 'M20 12V8H6a2 2 0 010-4h12v4M4 6v12a2 2 0 002 2h14v-4M18 12a2 2 0 100 4 2 2 0 000-4z' },
 ];
 
-const STORAGE_KEY = 'startraders_tab_prefs';
+const STORAGE_KEY = 'marketfliper_tab_prefs';
 
 function loadPrefs() {
   if (typeof window === 'undefined') return TABS;

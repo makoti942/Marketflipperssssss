@@ -61,7 +61,10 @@ export async function GET(request) {
    * Do NOT use request.url origin because proxies can
    * expose an internal localhost origin to the app.
    */
-  const redirectUri = process.env.DERIV_REDIRECT_URI || 'https://marketflipperss.vercel.app/api/auth/callback';
+  const redirectUri =
+    process.env.DERIV_REDIRECT_URI ||
+    process.env.DERIV_REDIRECT_URL ||
+    'https://marketflipperss.vercel.app/api/auth/callback';
 
   if (!redirectUri) {
     return NextResponse.json(
@@ -116,7 +119,11 @@ export async function GET(request) {
     );
   }
 
-  const clientId = process.env.DERIV_CLIENT_ID;
+  const clientId =
+    process.env.DERIV_CLIENT_ID ||
+    process.env.DERIV_APP_ID ||
+    process.env.NEXT_PUBLIC_DERIV_APP_ID ||
+    '34ogXNoaMaOpCsqhQDaDS';
 
   if (
     !clientId ||
