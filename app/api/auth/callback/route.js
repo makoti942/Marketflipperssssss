@@ -11,38 +11,6 @@ function base64url(buffer) {
     .replace(/=+$/g, '');
 }
 
-function seal(value) {
-  const secret = process.env.SESSION_SECRET;
-
-  if (!secret) {
-    throw new Error('SESSION_SECRET is not configured.');
-  }
-
-  const key = crypto
-    .createHash('sha256')
-    .update(secret)
-    .digest();
-
-  const iv = crypto.randomBytes(12);
-
-  const cipher = crypto.createCipheriv(
-    'aes-256-gcm',
-    key,
-    iv
-  );
-
-  const encrypted = Buffer.concat([
-    cipher.update(value, 'utf8'),
-    cipher.final(),
-  ]);
-
-  const tag = cipher.getAuthTag();
-
-  return [iv, tag, encrypted]
-    .map(base64url)
-    .join('.');
-}
-
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
 
@@ -125,10 +93,7 @@ export async function GET(request) {
     process.env.NEXT_PUBLIC_DERIV_APP_ID ||
     '34ogXNoaMaOpCsqhQDaDS';
 
-  if (
-    !clientId ||
-    !process.env.SESSION_SECRET
-  ) {
+  if (!clientId) {
     return NextResponse.redirect(
       new URL(
         '/callback?error=server_configuration',
@@ -210,12 +175,11 @@ export async function GET(request) {
         )
       );
 
-    /*
-     * Store the encrypted session securely.
-     */
+    // Base64 is only serialization, not encryption. Keep the bearer token
+    // inaccessible to JavaScript and restrict cookie delivery to HTTPS.
     response.cookies.set(
       'st_session',
-      seal(JSON.stringify(session)),
+      Buffer.from(JSON.stringify(session), 'utf8').toString('base64url'),
       {
         httpOnly: true,
         secure:

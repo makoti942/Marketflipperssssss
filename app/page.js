@@ -346,7 +346,7 @@ export default function HomePage() {
 
         <div className="why-list">
           {[
-            'Bank-grade security with encrypted sessions',
+            'HttpOnly sign-in cookies for session privacy',
             'Lightning-fast execution under 50ms',
             'Virtual account for risk-free testing',
             '24/7 customer support and trading resources',
