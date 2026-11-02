@@ -22,9 +22,9 @@ The old V1/legacy `oauth.deriv.com/oauth2/authorize` flow in the original projec
 
 For this deployment, the Deriv app ID and OAuth client ID use the supplied value `34ogXNoaMaOpCsqhQDaDS`. The app also has the production callback URL built in, so no Vercel environment variables are required.
 
-Register this exact root callback URL in Deriv, including the trailing slash:
+Register this exact root callback URL in Deriv, without a trailing slash:
 
-`https://marketflipperss.vercel.app/`
+`https://marketflipperss.vercel.app`
 
 Never commit `.env.local` or put access tokens in client-side JavaScript.
 
@@ -47,7 +47,7 @@ The UI pages from the original prototype contain some simulated/demo widgets. Au
 
 1. Push this folder to GitHub.
 2. Import this GitHub repository as a Vercel project.
-3. In the Deriv developer dashboard, use an **OAuth** application and register `https://marketflipperss.vercel.app/` exactly, including the trailing slash.
+3. In the Deriv developer dashboard, use an **OAuth** application and register `https://marketflipperss.vercel.app` exactly, without a trailing slash.
 4. Deploy and test Home → Start Trading → Deriv login/consent → Market Fliper dashboard.
 
 No user access token or password is stored in this repository. Tokens are issued by Deriv during OAuth and held in an HttpOnly browser cookie until they expire.

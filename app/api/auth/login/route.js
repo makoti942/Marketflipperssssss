@@ -9,7 +9,7 @@ function base64url(buffer) {
 
 export async function GET(request) {
   const clientId = '34ogXNoaMaOpCsqhQDaDS';
-  const redirectUri = 'https://marketflipperss.vercel.app/';
+  const redirectUri = 'https://marketflipperss.vercel.app';
   const scope = 'trade';
 
   const verifier = base64url(crypto.randomBytes(64));

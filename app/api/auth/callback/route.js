@@ -29,7 +29,7 @@ export async function GET(request) {
    * Do NOT use request.url origin because proxies can
    * expose an internal localhost origin to the app.
    */
-  const redirectUri = 'https://marketflipperss.vercel.app/';
+  const redirectUri = 'https://marketflipperss.vercel.app';
   const publicOrigin = new URL(redirectUri).origin;
 
   /*
