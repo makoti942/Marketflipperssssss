@@ -14,34 +14,32 @@ Deploy-ready Next.js application for a Star Traders web dashboard using Deriv's 
 - Authenticated WebSocket connection via Deriv OTP
 - Live account balance subscription
 - Logout/session handling
-- Render/Next.js production configuration
+- Vercel/Next.js production configuration
 
 ## IMPORTANT: Deriv configuration
 
 The old V1/legacy `oauth.deriv.com/oauth2/authorize` flow in the original project has been replaced. The current Deriv OAuth flow uses `https://auth.deriv.com/oauth2/auth`, an OAuth application/client ID, an exact HTTPS redirect URI, PKCE and a server-side code exchange.
 
-Create an OAuth application in the Deriv developer dashboard. Do not use a legacy-only App ID as `DERIV_CLIENT_ID`.
+Create an OAuth application in the Deriv developer dashboard. `DERIV_CLIENT_ID` is the OAuth client ID; it is separate from the Deriv app ID below.
 
 Register this exact callback URL in Deriv:
 
-`https://YOUR-RENDER-SERVICE.onrender.com/api/auth/callback`
+`https://marketflipperss.vercel.app/api/auth/callback`
 
-Then set these Render environment variables:
+Then set these environment variables in Vercel Project Settings:
 
 - `DERIV_CLIENT_ID` — OAuth application's client ID
-- `DERIV_APP_ID` — App ID required in Deriv API headers for the application
-- `DERIV_REDIRECT_URI` — exact callback URL above
+- `DERIV_APP_ID` — `34ogXNoaMaOpCsqhQDaDS`
+- `NEXT_PUBLIC_DERIV_APP_ID` — optional browser-side override; use the same app ID
+- `DERIV_REDIRECT_URI` — `https://marketflipperss.vercel.app/api/auth/callback`
 - `DERIV_OAUTH_SCOPE` — normally `trade` for this build
 - `SESSION_SECRET` — random 32+ character secret
 
 Never commit `.env.local` or put access tokens in client-side JavaScript.
 
-## Render
+## Vercel
 
-- Build command: `npm run build`
-- Start command: `npm start`
-- Node: 20+
-- Add the environment variables above in Render before deploying.
+Add the environment variables above to the Vercel project. Register the exact callback URL with the Deriv OAuth application.
 
 ## Expected login flow
 
@@ -55,8 +53,8 @@ The UI pages from the original prototype contain some simulated/demo widgets. Au
 ## Final deployment checklist
 
 1. Push this folder to GitHub.
-2. Create a Render Web Service with build command `npm run build` and start command `npm start`.
-3. Set `DERIV_CLIENT_ID`, `DERIV_APP_ID`, `DERIV_REDIRECT_URI`, `DERIV_OAUTH_SCOPE`, and `SESSION_SECRET` in Render.
+2. Import this GitHub repository as a Vercel project.
+3. Set `DERIV_CLIENT_ID`, `DERIV_APP_ID`, `DERIV_REDIRECT_URI`, `DERIV_OAUTH_SCOPE`, and `SESSION_SECRET` in Vercel Project Settings.
 4. In the Deriv developer dashboard, use an **OAuth** application and register the exact `/api/auth/callback` URL.
 5. Deploy and test Home → Start Trading → Deriv login/consent → Star Traders dashboard.
 

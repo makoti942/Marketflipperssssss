@@ -57,11 +57,11 @@ export async function GET(request) {
     request.cookies.get('st_oauth_verifier')?.value;
 
   /*
-   * Always use the public Render URL for redirects.
-   * Do NOT use request.url origin because Render can
+   * Always use the public Vercel URL for redirects.
+   * Do NOT use request.url origin because proxies can
    * expose an internal localhost origin to the app.
    */
-  const redirectUri = process.env.DERIV_REDIRECT_URI;
+  const redirectUri = process.env.DERIV_REDIRECT_URI || 'https://marketflipperss.vercel.app/api/auth/callback';
 
   if (!redirectUri) {
     return NextResponse.json(
@@ -192,7 +192,7 @@ export async function GET(request) {
 
     /*
      * IMPORTANT:
-     * Redirect using the public Render origin,
+     * Redirect using the public Vercel origin,
      * never request.url origin.
      */
     const response =

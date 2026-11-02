@@ -38,7 +38,7 @@ try {
   // Apply StarTraders branding to the actual DBot application before building it.
   const brandPath = path.join(tempDir, 'brand.config.json');
   const brand = JSON.parse(fs.readFileSync(brandPath, 'utf8'));
-  const hostname = process.env.STARTRADERS_HOSTNAME || 'startraders-xn1z.onrender.com';
+  const hostname = process.env.STARTRADERS_HOSTNAME || 'marketflipperss.vercel.app';
   brand.brand_name = 'StarTraders';
   brand.brand_domain = hostname;
   brand.domain_name = 'StarTraders';

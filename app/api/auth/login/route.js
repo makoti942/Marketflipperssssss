@@ -9,7 +9,7 @@ function base64url(buffer) {
 
 export async function GET(request) {
   const clientId = process.env.DERIV_CLIENT_ID;
-  const redirectUri = process.env.DERIV_REDIRECT_URI;
+  const redirectUri = process.env.DERIV_REDIRECT_URI || 'https://marketflipperss.vercel.app/api/auth/callback';
   const scope = process.env.DERIV_OAUTH_SCOPE || 'trade';
   const legacyAppId = process.env.DERIV_LEGACY_APP_ID;
 
